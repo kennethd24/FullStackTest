@@ -1,15 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 function Home() {
-  /*
-  {
-    warehouseName='new warehouse',
-    zone1 = [0,0,0],
-    zone2 = [0,0,0,0,0,0],
-    zone3 = [0,0,0,0,0,0,0,0,0,0,0]
-  }
-
-  */
   interface NewWarehouse {
     warehouseName: string;
     zone1: number;
@@ -52,12 +43,24 @@ function Home() {
     });
   };
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(newWarehouse);
+    fetch('http://localhost:5173/warehouse', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newWarehouse),
+    });
+  };
+
   const maxShelvesCount = 10;
   const shelvesArr = [];
-
   for (let i = 0; i <= maxShelvesCount; i += 1) {
     shelvesArr.push(
-      <option key={`shelf${i}`} value={i}>
+      <option key={`shelf-${i}`} value={i}>
         {' '}
         {i}
       </option>
@@ -66,40 +69,45 @@ function Home() {
 
   const maxZonesCount = 12;
   const zonesArr = [];
-
   for (let i = 1; i <= maxZonesCount; i += 1) {
     zonesArr.push(
-      <>
-        <div key={`zone${i}`}>Zone {i}</div>
-        <div>
-          <select name={`zone${i}`} onChange={(e) => handleChange(e)}>
-            {shelvesArr}
-          </select>
+      <div className="zone-container">
+        <div className="title" key={`zone${i}`}>
+          Zone {i}
         </div>
-      </>
+        <div>
+          <div>
+            shelves{'  '}
+            <select
+              id={`zone${i}`}
+              name={`zone${i}`}
+              onChange={(e) => handleChange(e)}
+            >
+              {shelvesArr}
+            </select>
+          </div>
+        </div>
+      </div>
     );
   }
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(newWarehouse);
-  };
 
   return (
     <div>
       <h1>Full Stack Test</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>{zonesArr}</div>
-        <label htmlFor="warehouse-input">
-          Enter warehouse name:
-          <input
-            onChange={(e) => handleChange(e)}
-            name="warehouseName"
-            type="text"
-            id="warehouse-input"
-          />
-          <button type="submit">Add new warehouse</button>
-        </label>
+        <div className="zones-container">{zonesArr}</div>
+        <div className="footer">
+          <label htmlFor="warehouse-input">
+            Enter warehouse name:
+            <input
+              onChange={(e) => handleChange(e)}
+              name="warehouseName"
+              type="text"
+              id="warehouse-input"
+            />
+            <button type="submit">Add new warehouse</button>
+          </label>
+        </div>
       </form>
     </div>
   );

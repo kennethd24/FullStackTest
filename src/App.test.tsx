@@ -5,8 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { App, WrappedApp } from './App';
 
 describe('App', () => {
-  it('Renders hello World!', () => {
-    // ARRANGE
+  it('Renders Full Stack Test!', () => {
     render(<WrappedApp />);
     // ACT
     // EXPECT
@@ -14,7 +13,7 @@ describe('App', () => {
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('Hello World!');
+    ).toHaveTextContent('Full Stack Test!');
   });
   it('Renders not found if invalid path', () => {
     render(

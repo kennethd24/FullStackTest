@@ -44,3 +44,36 @@ table {
 }
 
 /* css reset ends here */
+
+h1 {
+	font-size: 2em; 
+	font-weight: bolder;
+	text-align: center;
+	margin: 25px;
+}
+
+.zones-container {
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+	justify-content: center;
+	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.zone-container {
+	text-align: center;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid 2E6169;
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+}
+
+#warehouse-input {
+	margin: 10px;
+}
