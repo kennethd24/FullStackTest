@@ -5,15 +5,13 @@ import { MemoryRouter } from 'react-router-dom';
 import { App, WrappedApp } from './App';
 
 describe('App', () => {
-  it('Renders Full Stack Test!', () => {
+  it('Renders Full Stack Test', () => {
     render(<WrappedApp />);
-    // ACT
-    // EXPECT
     expect(
       screen.getByRole('heading', {
         level: 1,
       })
-    ).toHaveTextContent('Full Stack Test!');
+    ).toHaveTextContent('Full Stack Test');
   });
   it('Renders not found if invalid path', () => {
     render(
