@@ -16,8 +16,6 @@ app.post('/warehouse', async (req: Request, res: Response) => {
   }
 });
 
-app.get('/api/test', (_, res) => res.json({ greeting: 'Hello' }));
-
 app.listen(port, () => {
   console.log('listening on port: ', port);
 });
